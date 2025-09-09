@@ -1,0 +1,38 @@
+/* Common Button Styles */
+.btn1 {
+  font-size: 1rem;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  color: white;
+  margin-top: 20px;
+  display: inline-block;
+  text-align: center;
+}
+
+/* Add to Cart Button */
+.btn-add {
+  background: #2193b0;
+}
+
+.btn-add:hover {
+  background: #176d81;
+}
+
+/* ✅ Responsive Styles */
+@media (max-width: 768px) {
+  .btn1 {
+    font-size: 0.9rem; /* Chhoti screens par font size kam */
+    padding: 8px 16px; /* Button size adjust */
+  }
+}
+
+@media (max-width: 480px) {
+  .btn1 {
+    font-size: 0.8rem;
+    padding: 6px 12px;
+    width: 100%; /* Chhoti screens par full width button */
+  }
+}
