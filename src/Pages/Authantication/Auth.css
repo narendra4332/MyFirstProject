@@ -1,121 +1,74 @@
-/* 🔹 Full-Screen Gradient Background */
+/* Full Screen Center Layout */
 .auth-container {
-  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
   padding: 20px;
 }
 
-/* 🔹 Glassmorphism Card */
+/* Login Card */
 .auth-card {
-  width: 380px;
-  background: rgba(255, 255, 255, 0.1);
-  /* backdrop-filter: blur(12px); */
-  border-radius: 16px;
-  padding: 35px;
-  box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.4);
+  width: 100%;
+  max-width: 380px;
+  background: #ffffff;
+  padding: 35px 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
   text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* 🔹 Card Hover Effect */
-.auth-card:hover {
-  transform: scale(1.02);
-  box-shadow: 0px 12px 45px rgba(0, 0, 0, 0.5);
-}
-
-/* 🔹 Heading */
+/* Title */
 .auth-card h2 {
+  margin-bottom: 25px;
   font-size: 26px;
-  margin-bottom: 20px;
-  color: #00d4ff;
   font-weight: bold;
-  letter-spacing: 1px;
+  color: #1e3c72;
 }
 
-/* 🔹 Input Fields */
+/* Input Boxes */
 .auth-card input {
   width: 100%;
-  background: rgba(255, 255, 255, 0.15);
-  border: none;
-  padding: 12px 15px;
-  margin: 10px 0;
-  border-radius: 8px;
-  font-size: 16px;
-  color: white;
-  transition: background 0.3s ease, transform 0.2s ease;
+  padding: 12px 14px;
+  margin-bottom: 18px;
+  border: 1px solid #cfd8dc;
+  border-radius: 6px;
+  font-size: 15px;
+  transition: 0.3s ease;
 }
 
-/* 🔹 Input Placeholder */
-.auth-card input::placeholder {
-  color: rgba(255, 255, 255, 0.6);
-}
-
-/* 🔹 Input Focus Effect */
 .auth-card input:focus {
-  background: rgba(255, 255, 255, 0.25);
-  transform: scale(1.02);
+  border-color: #1e3c72;
   outline: none;
+  box-shadow: 0 0 4px rgba(30, 60, 114, 0.4);
 }
 
-/* 🔹 Primary Button */
-.btn-primary {
+/* Login Button */
+.auth-card button {
   width: 100%;
-  background: linear-gradient(90deg, #0072ff, #00c6ff);
+  padding: 12px;
+  background: #1e3c72;
+  color: #ffffff;
+  font-size: 17px;
+  font-weight: 600;
   border: none;
-  padding: 12px;
-  border-radius: 8px;
-  color: white;
-  font-size: 18px;
-  font-weight: bold;
-  /* margin-top: 15px; */
+  border-radius: 6px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: 0.3s ease;
 }
 
-/* 🔹 Primary Button Hover */
-.btn-primary:hover {
-  background: linear-gradient(90deg, #0052cc, #0099ff);
-  transform: scale(1.05);
+.auth-card button:hover {
+  background: #153264;
 }
 
-/* 🔹 Secondary Button */
-.btn-light {
-  width: 100%;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  background: transparent;
-  color: white;
-  padding: 12px;
-  border-radius: 8px;
-  font-size: 16px;
-  margin-top: 10px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
+/* Responsive */
+@media (max-width: 500px) {
+  .auth-card {
+    padding: 25px 20px;
+  }
 
-/* 🔹 Secondary Button Hover */
-.btn-light:hover {
-  background: rgba(255, 255, 255, 0.2);
-  transform: scale(1.05);
-}
-
-/* 🔹 Light Text */
-.text-light {
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 14px;
-  margin-top: 15px;
-}
-
-/* 🔹 Links */
-.auth-card a {
-  color: #00d4ff;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.auth-card a:hover {
-  color: #00a3cc;
-  text-decoration: underline;
+  .auth-card h2 {
+    font-size: 22px;
+  }
 }

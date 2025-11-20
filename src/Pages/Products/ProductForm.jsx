@@ -1,28 +1,12 @@
 import { useState, useEffect } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../Firebase";
+import { defaultCategories } from "./Data/categories";  // 🔥 Imported
 import "./Style/addProductForm.css";
 
 function ProductForm({ newProduct, setNewProduct, handleAddProduct }) {
   const [categories, setCategories] = useState([]);
-  const [loading, setLoading] = useState(false); // 🔹 ImgBB Upload Indicator
-
-  // 🔹 Default Categories (Agar Firestore Me Data Na Ho)
-  const defaultCategories = [
-    "Converters",
-    "FRC Cable Assembly",
-    "Heat Shrink Sleeves",
-    "Heavy Duty Connectors",
-    "Interface Cables",
-    "IO Connectors",
-    "M-8-12-16 Series Connectors",
-    "Mil Grade Connectors",
-    "Mini-Din Connectors",
-    "Programming Cables",
-    "Servo Cable Assemblies",
-    "Terminal Blocks",
-    "UL Shielded Cables",
-  ];
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -34,13 +18,16 @@ function ProductForm({ newProduct, setNewProduct, handleAddProduct }) {
           (doc) => doc.data().name
         );
 
+        // 🔥 Merge Default + Firestore Categories
         setCategories([
           ...new Set([...defaultCategories, ...fetchedCategories]),
         ]);
+
       } catch (error) {
         console.error("Error fetching categories:", error);
       }
     };
+
     fetchCategories();
   }, []);
 
@@ -48,7 +35,7 @@ function ProductForm({ newProduct, setNewProduct, handleAddProduct }) {
   const handleImageUpload = async (file) => {
     if (!file) return;
 
-    setLoading(true); // ✅ Start Loading Indicator
+    setLoading(true);
 
     const formData = new FormData();
     formData.append("image", file);
@@ -61,25 +48,28 @@ function ProductForm({ newProduct, setNewProduct, handleAddProduct }) {
           body: formData,
         }
       );
+
       const data = await response.json();
 
       if (data.success) {
         setNewProduct({
           ...newProduct,
-          ImageURL: data.data.url, // ✅ Store ImgBB Image URL
+          ImageURL: data.data.url,
         });
       } else {
         console.error("ImgBB Upload Failed:", data);
       }
+
     } catch (error) {
       console.error("Error uploading to ImgBB:", error);
     }
 
-    setLoading(false); // ✅ Stop Loading Indicator
+    setLoading(false);
   };
 
   return (
     <div className="add-product-form p-4 mb-2 shadow-sm rounded">
+
       <input
         type="text"
         className="form-control mb-2"
@@ -88,7 +78,6 @@ function ProductForm({ newProduct, setNewProduct, handleAddProduct }) {
         onChange={(e) => setNewProduct({ ...newProduct, Name: e.target.value })}
       />
 
-      {/* ✅ Category Dropdown (Firestore + Default Categories) */}
       <select
         className="form-control mb-2"
         value={newProduct.Category || ""}
@@ -97,14 +86,15 @@ function ProductForm({ newProduct, setNewProduct, handleAddProduct }) {
         }
       >
         <option value="">Select Category</option>
+
         {categories.map((category, index) => (
           <option key={index} value={category}>
             {category}
           </option>
         ))}
+
       </select>
 
-      {/* ✅ File Input (ImgBB Upload) */}
       <input
         type="file"
         className="form-control mb-2"
@@ -112,10 +102,8 @@ function ProductForm({ newProduct, setNewProduct, handleAddProduct }) {
         onChange={(e) => handleImageUpload(e.target.files[0])}
       />
 
-      {/* ✅ Loading Indicator */}
       {loading && <p className="text-info">Uploading Image...</p>}
 
-      {/* ✅ Show Uploaded Image */}
       {newProduct.ImageURL && (
         <img
           src={newProduct.ImageURL}
@@ -128,6 +116,7 @@ function ProductForm({ newProduct, setNewProduct, handleAddProduct }) {
       <button className="btn btn-success w-100" onClick={handleAddProduct}>
         Add Product
       </button>
+
     </div>
   );
 }

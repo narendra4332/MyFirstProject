@@ -1,3 +1,171 @@
-.heading-color {
+/* -----------------------------
+   GLOBAL ANIMATIONS
+------------------------------*/
+.about-page {
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+/* -----------------------------
+   MAIN HEADING
+------------------------------*/
+.main-heading {
+  font-size: 38px;
+  font-weight: 800;
+  color: #1b1b1b;
+}
+
+.main-heading span {
   color: #2193b0;
+}
+
+.sub-text {
+  font-size: 17px;
+  color: #555;
+  max-width: 650px;
+}
+
+/* -----------------------------
+   SECTION TITLES
+------------------------------*/
+.section-title {
+  font-size: 28px;
+  font-weight: 800;
+  /* color: #1b74b7; */
+  /* color: #2193b0; */
+  position: relative;
+  margin-bottom: 18px;
+}
+
+.section-title::after {
+  content: "";
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #1b74b7, #00c6ff);
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  border-radius: 10px;
+}
+
+/* -----------------------------
+   SECTION PARAGRAPH
+------------------------------*/
+.section-text {
+  font-size: 17px;
+  color: #4a4a4a;
+  line-height: 1.9;
+  letter-spacing: 0.2px;
+  font-weight: 400;
+  background: rgba(0, 123, 255, 0.03);
+  padding: 18px 22px;
+  border-left: 4px solid #1b74b7;
+  border-radius: 10px;
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.05);
+  transition: 0.3s ease;
+}
+
+.section-text:hover {
+  transform: translateY(-3px);
+  background: rgba(0, 123, 255, 0.06);
+  box-shadow: 0px 6px 16px rgba(0,0,0,0.08);
+}
+
+/* -----------------------------
+   IMAGE STYLING
+------------------------------*/
+.about-img {
+  width: 100%;
+  border-radius: 12px;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.about-img:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 12px 28px rgba(0,0,0,0.2);
+}
+
+/* -----------------------------
+   ROW ANIMATION
+------------------------------*/
+.row {
+  animation: fadeUp 0.7s ease forwards;
+}
+
+/* -----------------------------
+   CONTACT BUTTON
+------------------------------*/
+.contact-btn {
+  background-color: #111;
+  border: none;
+  padding: 12px 35px;
+  font-size: 18px;
+  color: #fff;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.contact-btn:hover {
+  background: #2193b0;
+  transform: translateY(-2px);
+}
+
+/* -----------------------------
+   WHY DIFFERENT SECTION
+------------------------------*/
+.why-box {
+  background: #0e0e0e;
+  color: white;
+  border-radius: 15px;
+  padding: 30px;
+}
+
+.why-title {
+  font-size: 32px;
+  font-weight: 800;
+}
+
+.why-card {
+  background: #fff;
+  color: #222;
+  padding: 25px;
+  border-radius: 12px;
+  transition: 0.3s;
+}
+
+.why-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 8px 20px rgba(0,0,0,0.15);
+}
+
+/* -----------------------------
+   MOBILE RESPONSIVE
+------------------------------*/
+@media (max-width: 768px) {
+  .main-heading {
+    font-size: 30px;
+  }
+  
+  .section-title {
+    font-size: 22px;
+  }
+
+  .contact-btn {
+    width: 90%;
+  }
 }

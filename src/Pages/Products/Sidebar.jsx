@@ -1,27 +1,11 @@
 import { useState, useEffect } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../Firebase";
+import { defaultCategories } from "./Data/categories";  // 🔥 Imported
 import "./Style/Sidebar.css";
 
 const Sidebar = ({ setSelectedCategory }) => {
   const [categories, setCategories] = useState([]);
-
-  // 🔹 Default Categories
-  const defaultCategories = [
-    "Converters",
-    "FRC Cable Assembly",
-    "Heat Shirink Sleever",
-    "Heavy Duity Connecttors",
-    "Interface Cables",
-    "IO Connectors",
-    "M-8-12-16 Series Connectors",
-    "Mil Grade Connectors",
-    "Mini-Din Connectors",
-    "Programming Cables",
-    "Servo Cable Assemblies",
-    "Terminal Blocks",
-    "UL Shielded Cables",
-  ];
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -33,7 +17,7 @@ const Sidebar = ({ setSelectedCategory }) => {
           (doc) => doc.data().name
         );
 
-        // 🔹 Default + Firestore Categories Combine (Unique Values)
+        // 🔥 Merge Default + Firestore Categories
         const uniqueCategories = [
           ...new Set([...defaultCategories, ...fetchedCategories]),
         ];
@@ -50,10 +34,15 @@ const Sidebar = ({ setSelectedCategory }) => {
   return (
     <div className="sidebar">
       <h3>Categories</h3>
+
       <ul>
         <li onClick={() => setSelectedCategory("")}>All Products</li>
+
         {categories.map((category, index) => (
-          <li key={index} onClick={() => setSelectedCategory(category)}>
+          <li 
+            key={index} 
+            onClick={() => setSelectedCategory(category)}
+          >
             {category}
           </li>
         ))}

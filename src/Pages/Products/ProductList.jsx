@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Style/productList.css";
 
 function ProductList({
@@ -10,6 +10,8 @@ function ProductList({
   editingProduct,
   handleEditProduct,
 }) {
+  const [fullscreenImage, setFullscreenImage] = useState(null);
+
   return (
     <div className="product-list-container">
       {products && products.length > 0 ? (
@@ -20,6 +22,8 @@ function ProductList({
                 src={product.ImageURL}
                 alt={product.Name}
                 className="product-image"
+                onClick={() => setFullscreenImage(product.ImageURL)}
+                style={{ cursor: "pointer" }}
               />
               <h3 className="product-name">{product.Name}</h3>
 
@@ -53,22 +57,32 @@ function ProductList({
         <h2 className="text-center">No products available</h2>
       )}
 
-      {/* Edit Product Modal */}
+      {/* Full Screen Image Popup */}
+      {fullscreenImage && (
+        <div
+          className="fullscreen-overlay"
+          onClick={() => setFullscreenImage(null)}
+        >
+          <img src={fullscreenImage} className="fullscreen-image" />
+        </div>
+      )}
+
+      {/* Edit Product Modal (same as before) */}
       {editingProduct && (
         <div className="edit-product-modal">
           <h3>Edit Product</h3>
+
           <input
             type="text"
-            className="w-full p-2 mb-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             value={editingProduct.Name}
             onChange={(e) =>
               setEditingProduct({ ...editingProduct, Name: e.target.value })
             }
+            className="w-full p-2 mb-3 border border-gray-300 rounded-md"
           />
 
           <input
             type="file"
-            className="w-full p-2 mb-3 border border-gray-300 rounded-md shadow-sm bg-white cursor-pointer focus:outline-none file:border-none file:bg-blue-600 file:text-white file:py-2 file:px-4 file:rounded-md hover:file:bg-blue-700"
             accept="image/*"
             onChange={(e) => {
               const file = e.target.files[0];
@@ -84,15 +98,13 @@ function ProductList({
                 reader.readAsDataURL(file);
               }
             }}
+            className="w-full p-2 mb-3 border border-gray-300 rounded-md bg-white"
           />
 
-          <button className="btn btn-success me-2 " onClick={handleEditProduct}>
+          <button className="btn btn-success me-2" onClick={handleEditProduct}>
             Save
           </button>
-          <button
-            className="btn btn-dark"
-            onClick={() => setEditingProduct(null)}
-          >
+          <button className="btn btn-dark" onClick={() => setEditingProduct(null)}>
             Cancel
           </button>
         </div>

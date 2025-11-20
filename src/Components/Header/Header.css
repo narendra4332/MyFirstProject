@@ -1,4 +1,4 @@
-/* Navbar Links (Default) */
+/* -------------------- NAVBAR LINKS (Default) -------------------- */
 .navbar-nav .nav-link {
   font-size: 1rem;
   font-weight: 500;
@@ -6,68 +6,105 @@
   transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
 }
 
-/* Hover Effect (Only Color for Large Screens) */
+/* Hover (Large Screens Only) */
 .navbar-nav .nav-link:hover {
-  color: #2193b0 !important; /* Text color change */
+  color: #2193b0 !important;
 }
 
-/* Active Link (Only Color for Large Screens) */
+/* Active Link */
 .navbar-nav .nav-link.active {
   color: #2193b0 !important;
   font-weight: bold;
 }
+
 .button-dox {
   display: flex;
 }
 
-/* Responsive Adjustments */
+/* -------------------- BRAND IMAGE RESPONSIVE -------------------- */
+.container-fluid img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;     /* Image distortion ko roke */
+  max-width: 100%;         /* Fully responsive */
+}
+
+/* Small Screens - Image Smaller */
+@media (max-width: 480px) {
+  .container-fluid img {
+    width: 55px;
+    height: 55px;
+  }
+}
+
+/* -------------------- RESPONSIVE NAVBAR -------------------- */
 @media (max-width: 992px) {
   .navbar-nav {
     text-align: center;
   }
 
   .navbar-nav .nav-link {
-    background-color: rgba(33, 147, 176, 0.2); /* Light background */
-    color: inherit !important; /* Text color same rahega */
+    background-color: rgba(33, 147, 176, 0.2);
+    color: inherit !important;
     border-radius: 5px;
   }
 
-  /* Mobile Hover & Active - Background Color Change */
   .navbar-nav .nav-link:hover,
   .navbar-nav .nav-link.active {
-    background-color: rgba(33, 147, 176, 0.486); /* Light background */
-    color: inherit !important; /* Text color same rahega */
-    border-radius: 5px;
+    background-color: rgba(33, 147, 176, 0.45);
+    color: inherit !important;
   }
 }
 
+/* -------------------- TABLET VIEW -------------------- */
 @media (max-width: 768px) {
   .navbar-nav .nav-link {
     font-size: 0.8rem;
-    padding: 12px;
+    padding: 10px;
   }
 
-  /* Increase touch area */
   .navbar-nav .nav-item {
     padding: 5px 0;
   }
 
-  /* Mobile Navigation Background */
   .navbar-collapse {
     background: #f8f9fa;
     padding: 10px;
   }
-}
 
-/* Mobile View Fix */
-@media (max-width: 768px) {
-  .navbar-nav .nav-link {
-    padding: 8px 12px;
-    font-size: 0.7rem;
+  .brand-name {
+    font-size: 18px;
+  }
+  .brand-sub {
+    font-size: 12px;
+  }
+
+  .button-dox {
+    display: block;
   }
 }
 
-/* Navbar Brand */
+/* -------------------- MOBILE VIEW -------------------- */
+@media (max-width: 480px) {
+  .navbar-nav .nav-link {
+    font-size: 0.7rem;
+    padding: 8px 10px;
+  }
+
+  .brand-name {
+    font-size: 14px;
+  }
+
+  .brand-sub {
+    font-size: 11px;
+  }
+
+  .button-dox {
+    padding: 10px;
+  }
+}
+
+/* -------------------- BRAND TEXT -------------------- */
 .navbar-brand {
   font-size: 20px;
   font-weight: bold;
@@ -78,68 +115,38 @@
   white-space: nowrap;
 }
 
-/* Brand Name */
 .brand-name {
   font-size: 22px;
   font-weight: bold;
   color: #2193b0;
 }
 
-/* Subtext */
 .brand-sub {
   font-size: 14px;
   color: #555;
 }
 
-/* Responsive Text Adjustments */
-@media (max-width: 768px) {
-  .brand-name {
-    font-size: 18px;
-  }
-  .brand-sub {
-    font-size: 12px;
-  }
-}
-
-@media (max-width: 480px) {
-  .brand-name {
-    font-size: 12px;
-  }
-  .brand-sub {
-    font-size: 12px;
-  }
-  .button-dox {
-    display: block;
-    padding: 10px;
-  }
-}
-
-/* Cart Button */
+/* -------------------- CART BUTTON -------------------- */
 .cart-btn {
   color: #2193b0;
   border-color: #2193b0;
   display: flex;
-  /* justify-content: center; */
   align-items: center;
-  /* margin: 0 auto; Centering */
-  width: fit-content; /* Button ka width content ke hisaab se rahega */
+  width: fit-content;
 }
-/* .center-btn {
-  display: flex;
-  justify-content: center;
-} */
 
 .cart-btn:hover {
   background-color: #2193b0;
   color: white;
 }
+
 .butoon-style {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-/* Default Toggler Icon */
+/* -------------------- TOGGLER (Hamburger) -------------------- */
 .navbar-toggler {
   border: none;
   background: transparent;
@@ -147,7 +154,6 @@
   outline: none;
 }
 
-/* Toggler Icon Styling */
 .navbar-toggler-icon {
   width: 30px;
   height: 3px;
@@ -157,7 +163,6 @@
   transition: all 0.3s ease-in-out;
 }
 
-/* Hamburger Lines */
 .navbar-toggler-icon::before,
 .navbar-toggler-icon::after {
   content: "";
@@ -169,24 +174,14 @@
   transition: all 0.3s ease-in-out;
 }
 
-/* Top Line */
 .navbar-toggler-icon::before {
   top: -8px;
 }
 
-/* Bottom Line */
 .navbar-toggler-icon::after {
   top: 8px;
 }
 
-/* Hover Effect */
-.navbar-toggler:hover .navbar-toggler-icon,
-.navbar-toggler:hover .navbar-toggler-icon::before,
-.navbar-toggler:hover .navbar-toggler-icon::after {
-  background-color: #333;
-}
-
-/* Active (Cross Icon) */
 .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   background: transparent;
 }
@@ -201,12 +196,8 @@
   top: 0;
 }
 
-/* Responsive Adjustments */
+/* Toggler Responsive */
 @media (max-width: 768px) {
-  .navbar-toggler {
-    padding: 6px;
-  }
-
   .navbar-toggler-icon,
   .navbar-toggler-icon::before,
   .navbar-toggler-icon::after {
@@ -224,10 +215,6 @@
 }
 
 @media (max-width: 480px) {
-  .navbar-toggler {
-    padding: 5px;
-  }
-
   .navbar-toggler-icon,
   .navbar-toggler-icon::before,
   .navbar-toggler-icon::after {

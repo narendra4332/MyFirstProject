@@ -1,13 +1,9 @@
 import { useState, useEffect } from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { onAuthStateChanged, signOut } from "firebase/auth";
-import { auth, db } from "./Firebase"; // Firestore import kiya
+import { auth, db } from "./Firebase";
 import { doc, getDoc } from "firebase/firestore";
+
 import Product from "./Pages/Products/Product";
 import Cart from "./Pages/Cart/Cart";
 import ChecKout from "./Pages/Checkout/ChecKout";
@@ -16,31 +12,34 @@ import Header from "./Components/Header/Header";
 import About from "./Pages/About/About";
 import ProductCard from "./Components/Main/ProductCard";
 import Footer from "./Components/Footer/Footer";
-import Auth from "./Pages/Authantication/Auth";
 import Contact from "./Pages/Contact/Contact";
-import Orders from "./Pages/Orders/Orders"; // Orders Page Import
+import Orders from "./Pages/Orders/Orders";
 import "./App.css";
+import Auth from "./Pages/Authantication/Auth";
 
 function App() {
   const [cart, setCart] = useState([]);
-  const [user, setUser] = useState(null);
-  const [userRole, setUserRole] = useState(null); // ✅ Role State
+  const [admin, setAdmin] = useState(null);
+  const [adminRole, setAdminRole] = useState(null);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
-      setUser(currentUser);
+      if (!currentUser) {
+        setAdmin(null);
+        setAdminRole(null);
+        return;
+      }
 
-      if (currentUser) {
-        // ✅ Firestore se Role Fetch karna
-        const userRef = doc(db, "users", currentUser.uid);
-        const userSnap = await getDoc(userRef);
-        if (userSnap.exists()) {
-          setUserRole(userSnap.data().role); // "admin" ya "user"
-        } else {
-          setUserRole("user"); // Default role
-        }
+      const ref = doc(db, "users", currentUser.uid);
+      const snap = await getDoc(ref);
+
+      if (snap.exists() && snap.data().role === "admin") {
+        setAdmin(currentUser);
+        setAdminRole("admin");
       } else {
-        setUserRole(null);
+        signOut(auth);
+        setAdmin(null);
+        setAdminRole(null);
       }
     });
 
@@ -53,48 +52,32 @@ function App() {
 
   const handleLogout = async () => {
     await signOut(auth);
-    setUser(null);
-    setUserRole(null);
+    setAdmin(null);
+    setAdminRole(null);
   };
 
   return (
-    <Router>
-      {user && (
-        <Header cart={cart} handleLogout={handleLogout} userRole={userRole} />
-      )}
-      <Routes>
-        {!user ? (
-          <>
-            <Route path="/auth" element={<Auth />} />
-            <Route path="*" element={<Navigate to="/auth" />} />
-          </>
-        ) : (
-          <>
-            <Route path="/" element={<ProductCard />} />
-            <Route path="/about" element={<About />} />
-            <Route
-              path="/Product"
-              element={<Product addToCart={addToCart} />}
-            />
-            <Route path="/Contact" element={<Contact />} />
-            <Route
-              path="/cart"
-              element={<Cart cart={cart} setCart={setCart} />}
-            />
-            <Route
-              path="/checkout"
-              element={<ChecKout cart={cart} setCart={setCart} />}
-            />
-            <Route path="/thankyou" element={<ThankYou />} />
+    <Router basename="/">
+      <Header cart={cart} userRole={adminRole} handleLogout={handleLogout} />
 
-            {/* ✅ Orders sirf admin ko dikhayenge */}
-            {userRole === "admin" && (
-              <Route path="/Orders" element={<Orders />} />
-            )}
-          </>
-        )}
+      <Routes>
+        <Route path="/" element={<ProductCard />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/Product" element={<Product addToCart={addToCart} />} />
+        <Route path="/Contact" element={<Contact />} />
+        <Route path="/cart" element={<Cart cart={cart} setCart={setCart} />} />
+        <Route
+          path="/checkout"
+          element={<ChecKout cart={cart} setCart={setCart} />}
+        />
+        <Route path="/thankyou" element={<ThankYou />} />
+
+        <Route path="/admin" element={<Auth />} />
+
+        {adminRole === "admin" && <Route path="/Orders" element={<Orders />} />}
       </Routes>
-      {user && <Footer />}
+
+      <Footer />
     </Router>
   );
 }

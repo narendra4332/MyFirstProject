@@ -9,6 +9,11 @@ import "./Style/Home.css";
 import Slideshow from "./Slideshow";
 import About from "./About";
 import ProductSlider from "./ProductSlider";
+import OEMPartners from "../../Components/OEMPartners";
+const aboutImages = import.meta.glob("./Images/*.{png,jpg,jpeg}", {
+  eager: true,
+});
+const aboutImageList = Object.values(aboutImages).map((m) => m.default);
 
 function Home({ HomePageCount }) {
   const navigate = useNavigate();
@@ -39,8 +44,14 @@ function Home({ HomePageCount }) {
       {/* Product Slider */}
       <ProductSlider products={products} />
 
+      <OEMPartners
+        images={aboutImageList}
+        title="OUR DELIGHTED CUSTOMER"
+        speed={10}
+      />
+
       {/* WhatsApp Button */}
-      <div className="text-center mt-4">
+      <div className="text-center mt-5">
         <a
           href={`https://wa.me/${whatsappNumber}`}
           target="_blank"

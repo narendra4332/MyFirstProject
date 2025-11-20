@@ -1,113 +1,103 @@
 import React from "react";
 import { FaPhone } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-// import "bootstrap/dist/css/bootstrap.min.css";
+import img1 from "./Images1/S1.png";
+import img2 from "./Images1/Cable.gif";
 import "./Style/About.css";
 
 function About() {
   const navigate = useNavigate();
 
   return (
-    <div className="container my-5">
-      {/* About Section */}
+    <div className="container py-5 about-page">
+      {/* Heading Section */}
       <div className="text-center mb-5">
-        <h1 className="display fw-bold text-dark">
-          <i className="bi bi-rocket-takeoff-fill me-2"></i> About SUSCOM Group
+        <h1 className="main-heading">
+          About <span>SUSCOM GROUP</span>
         </h1>
-        <p className="lead text-muted mx-auto w-75">
+        <p className="sub-text mx-auto">
           We are pioneers in manufacturing, distributing, and importing
           high-quality connectors, cable assemblies, and data-signal converters.
         </p>
       </div>
 
-      {/* Image & Text Row */}
-      <div className="row align-items-center g-4">
-        <div className="col-md-6 text-center">
-          <img
-            src="src\assets\How-to-ensure-quality-and-reliability-as-cable-assembly.png"
-            alt="SUSCOM Industry"
-            className="img-fluid rounded-3 shadow-sm"
-          />
+      {/* About Row */}
+      <div className="row align-items-center g-5">
+        <div className="col-md-5 text-center">
+          <img src={img1} alt="Industry" className="about-img shadow-lg" />
         </div>
-        <div className="col-md-6 text-md-start text-center p-4 border rounded-3 shadow-sm bg-light">
-          <h3 className="fw-bold heading-color">
-            Reliable & Advanced Solutions
-          </h3>
-          <p className="text-muted">
-            From industrial automation to customized connectivity solutions, we
-            provide top-tier quality with express worldwide delivery—ensuring
-            seamless integration and unmatched reliability for your business.
+        <div className="col-md-7">
+          <h3 className="section-title">Reliable & Advanced Solutions</h3>
+          <p className="section-text">
+            From industrial automation to advanced connectivity solutions, we
+            deliver premium components with global express delivery. Engineered
+            with precision and tested for durability, our solutions offer
+            consistent performance and long-term reliability—making us a trusted
+            partner for industries worldwide.
           </p>
         </div>
       </div>
 
-      {/* Vision Section */}
-      <div className="row align-items-center g-4 mt-5 flex-column-reverse flex-md-row">
-        <div className="col-md-6 text-md-start text-center p-4 border rounded-3 shadow-sm bg-light">
-          <h3 className="fw-bold heading-color">Our Vision</h3>
-          <p className="text-muted">
-            To set new benchmarks in the cable industry by delivering
-            high-performance, reliable, and future-ready connectivity solutions
-            that empower businesses with seamless efficiency and unmatched
-            durability. With a commitment to innovation and precision
-            engineering, we ensure our solutions exceed industry standards and
-            drive technological excellence.
+      {/* Vision Row */}
+      <div className="row align-items-center g-5 mt-5 flex-column-reverse flex-md-row">
+        <div className="col-md-7">
+          <h3 className="section-title">Our Vision</h3>
+          <p className="section-text">
+            We are a rapidly growing Industry and currently a leading
+            manufactures standardized and custom cables and cable systems
+            supported by the highest level of industrial engineering competence
+            and services. Our product range reflects the cutting edge of high
+            technology. We are always alert to market conditions and make
+            endeavors to provide latest products technology and services.
           </p>
         </div>
-        <div className="col-md-6 text-center">
-          <img
-            src="src\assets\Cable-and-wire-industry.gif"
-            alt="Our Vision"
-            className="img-fluid rounded-3 shadow-sm"
-          />
+        <div className="col-md-5 text-center">
+          <img src={img2} alt="Vision" className="about-img shadow-lg" />
         </div>
       </div>
 
       {/* Contact Button */}
       <div className="text-center mt-5">
-        <button
-          onClick={() => navigate("/Contact")}
-          className="btn btn-dark btn-lg px-4 py-2 shadow"
-        >
+        <button onClick={() => navigate("/Contact")} className="contact-btn">
           Contact Us <FaPhone className="ms-2" />
         </button>
       </div>
 
       {/* Why Different Section */}
-      <div className="p-5 mt-5 rounded-3 shadow-lg bg-dark text-white text-center">
-        <h2 className="fw-bold">
-          <i className="bi bi-question-circle-fill me-2"></i> Why Are We
-          Different?
-        </h2>
-        <p>
-          We commit to providing the best quality materials with competitive
-          pricing and express delivery service.
+      <div className="why-box text-center mt-5 p-5">
+        <h2 className="why-title">Why Are We Different?</h2>
+        <p className="why-subtext">
+          We ensure the best quality at competitive prices with fast delivery.
         </p>
 
         <div className="row mt-4 g-4">
           <div className="col-md-4">
-            <div className="p-4 border rounded-3 shadow-sm bg-light text-dark feature-box">
-              <h4 className="heading-color">
+            <div className="why-card">
+              <h4>
                 <i className="bi bi-check-circle-fill me-2"></i> Certified
                 Excellence
               </h4>
               <p>ISO 9001-2015 and CE certified quality systems.</p>
             </div>
           </div>
+
           <div className="col-md-4">
-            <div className="p-4 border rounded-3 shadow-sm bg-light text-dark feature-box">
-              <h4 className="heading-color">
+            <div className="why-card">
+              <h4>
                 <i className="bi bi-tools me-2"></i> Tailored Solutions
               </h4>
-              <p>We offer full customization to meet client needs.</p>
+              <p>
+                We design solutions fully customized to client requirements.
+              </p>
             </div>
           </div>
+
           <div className="col-md-4">
-            <div className="p-4 border rounded-3 shadow-sm bg-light text-dark feature-box">
-              <h4 className="heading-color">
+            <div className="why-card">
+              <h4>
                 <i className="bi bi-headset me-2"></i> Exceptional Support
               </h4>
-              <p>Guaranteed quality products with expert assistance.</p>
+              <p>Premium support & guaranteed high-quality products.</p>
             </div>
           </div>
         </div>
